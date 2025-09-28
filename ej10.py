@@ -1,46 +1,29 @@
-class contacto:
+class Contacto:
     def __init__(self, nombre, telefono, email):
-        self.nombre = nombre
-        self.telefono = telefono
-        self.email = email
-
+        self.nombre, self.telefono, self.email = nombre, telefono, email
     def __str__(self):
         return f"Nombre: {self.nombre}, Teléfono: {self.telefono}, Email: {self.email}"
-    
-class agenda:
+
+class Agenda:
     def __init__(self):
         self.contactos = []
-
-    def agregar_contacto(self, contacto):
+    def agregar(self, contacto):
         self.contactos.append(contacto)
+    def mostrar(self):
+        print("\n".join(str(c) for c in self.contactos) or "No hay contactos.")
 
-    def mostrar_contactos(self):
-        for contacto in self.contactos:
-            print(contacto)
-
-mi_agenda = agenda()
+agenda = Agenda()
 while True:
-    print("\nSeleccione una opción:")
-    print("1. Agregar contacto")
-    print("2. Mostrar contactos")
-    print("3. Salir")
-    opcion = input("Ingrese la opción (1/2/3): ")
-    
+    opcion = input("\n1. Agregar contacto\n2. Mostrar contactos\n3. Salir\nOpción: ")
     if opcion == '1':
-        nombre = input("Ingrese el nombre del contacto: ")
-        telefono = input("Ingrese el teléfono del contacto: ")
-        email = input("Ingrese el email del contacto: ")
-        nuevo_contacto = contacto(nombre, telefono, email)
-        mi_agenda.agregar_contacto(nuevo_contacto)
-        print(f"Contacto '{nombre}' agregado.")
-        
+        datos = [input(f"Ingrese {campo}: ") for campo in ["nombre", "teléfono", "email"]]
+        agenda.agregar(Contacto(*datos))
+        print(f"Contacto '{datos[0]}' agregado.")
     elif opcion == '2':
         print("Contactos en la agenda:")
-        mi_agenda.mostrar_contactos()
-        
+        agenda.mostrar()
     elif opcion == '3':
-        print("Gracias por usar la agenda de contactos.")
+        print("Gracias por usar la agenda.")
         break
-        
     else:
-        print("Opción inválida. Intente de nuevo.")
+        print("Opción inválida.")
