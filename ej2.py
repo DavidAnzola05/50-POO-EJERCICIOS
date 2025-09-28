@@ -1,34 +1,15 @@
-class calculadora:
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
-    def sumar(self):
-        print("El resultado de la suma es:", self.a + self.b)
-    def restar(self):
-        print("El resultado de la resta es:", self.a - self.b)
-    def multiplicar(self):
-        print("El resultado de la multiplicacion es:", self.a * self.b)
-    def dividir(self):
-        if self.b != 0:
-            print("El resultado de la division es:", self.a / self.b)
-        else:
-            print("Error: Division por cero no es permitida.")
+class Calculadora:
+    def __init__(self, a, b): self.a, self.b = a, b
+    def operar(self, op):
+        ops = {
+            "1": ("suma", self.a + self.b),
+            "2": ("resta", self.a - self.b),
+            "3": ("multiplicación", self.a * self.b),
+            "4": ("división", self.a / self.b if self.b else "Error: división por cero")
+        }
+        print(f"Resultado de la {ops[op][0]}: {ops[op][1]}")
 
-a = float(input("Ingrese el primer numero: "))
-b = float(input("Ingrese el segundo numero: "))
-
-print("Seleccione la operacion:")
-print("1. Sumar")
-print("2. Restar")
-print("3. Multiplicar")
-print("4. Dividir")
-opcion = input("Ingrese la opcion (1/2/3/4): ")
-calc = calculadora(a, b)
-if opcion == '1':
-    calc.sumar()
-elif opcion == '2':
-    calc.restar()
-elif opcion == '3':
-    calc.multiplicar()
-elif opcion == '4':
-    calc.dividir()
+a = float(input("Primer número: "))
+b = float(input("Segundo número: "))
+op = input("1.Sumar  2.Restar  3.Multiplicar  4.Dividir\nOpción: ")
+Calculadora(a,b).operar(op)
