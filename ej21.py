@@ -1,24 +1,13 @@
-class carritoCompras:
-    def __init__ (self, producto, precio, cantidad):
-        self.producto = producto
-        self.precio = precio
-        self.cantidad = cantidad
-
-class Producto(carritoCompras):
-    def __init__(self, producto, precio, cantidad):
-        super().__init__(producto, precio, cantidad)
-
+class Producto:
+    def __init__(self, nombre, precio, cantidad):
+        self.nombre, self.precio, self.cantidad = nombre, precio, cantidad
     def descuento(self, porcentaje):
-        descuento = self.precio * (porcentaje / 100)
-        precio_final = self.precio - descuento
-        return f"El precio final de {self.producto} con un descuento del {porcentaje}% es: ${precio_final:.2f}"
+        return f"{self.nombre} con {porcentaje}% desc.: ${self.precio*(1-porcentaje/100):.2f}"
+
     def total(self):
-        total = self.precio * self.cantidad
-        return f"El total a pagar por {self.cantidad} unidades de {self.producto} es: ${total:.2f}"
-    
-producto1 = Producto("Laptop", 1500, 2)
-print(producto1.descuento(10))
-print(producto1.total())
-producto2 = Producto("Smartphone", 800, 3)
-print(producto2.descuento(5))
-print(producto2.total())
+        return f"{self.cantidad} x {self.nombre} = ${self.precio*self.cantidad:.2f}"
+p1 = Producto("Laptop", 1500, 2)
+p2 = Producto("Smartphone", 800, 3)
+for p in (p1, p2):
+    print(p.descuento(10 if p.nombre=="Laptop" else 5))
+    print(p.total())
