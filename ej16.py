@@ -1,38 +1,25 @@
-class vehiculo:
-    def __init__(self, marca, modelo):
-        self.marca = marca
-        self.modelo = modelo
+class Vehiculo:
+    def __init__(self, marca, modelo, extra=""):
+        self.marca, self.modelo, self.extra = marca, modelo, extra
     def mostrar_info(self):
-        print(f"Vehiculo: {self.marca} {self.modelo}")
+        print(f"{self.__class__.__name__}: {self.marca} {self.modelo} {self.extra}")
 
-class carro(vehiculo):
+class Carro(Vehiculo):
     def __init__(self, marca, modelo, puertas):
-        super().__init__(marca, modelo)
-        self.puertas = puertas
-    def mostrar_info(self):
-        super().mostrar_info()
-        print(f"Carro: {self.marca} {self.modelo},  Puertas: {self.puertas}")
+        super().__init__(marca, modelo, f"- Puertas: {puertas}")
 
-class motocicleta(vehiculo):
+class Motocicleta(Vehiculo):
     def __init__(self, marca, modelo, cilindraje):
-        super().__init__(marca, modelo)
-        self.cilindraje = cilindraje
-    def mostrar_info(self):
-        super().mostrar_info()
-        print(f"Motocicleta: {self.marca} {self.modelo}, cilindraje: {self.cilindraje}cc")
+        super().__init__(marca, modelo, f"- Cilindraje: {cilindraje}cc")
 
-class bicicleta(vehiculo):
+class Bicicleta(Vehiculo):
     def __init__(self, marca, modelo, tipo):
-        super().__init__(marca, modelo)
-        self.tipo = tipo
-    def mostrar_info(self):
-        super().mostrar_info()
-        print(f"Bicicleta: {self.marca} {self.modelo}, Tipo: {self.tipo}")
+        super().__init__(marca, modelo, f"- Tipo: {tipo}")
 
-carro1 = carro("Toyota", "Corolla", 4)
-moto = motocicleta("Yamaha", "YZF-R3", 321)
-bici = bicicleta("Giant", "Escape 3", "Urbana")
+vehiculos = [
+    Carro("Toyota", "Corolla", 4),
+    Motocicleta("Yamaha", "YZF-R3", 321),
+    Bicicleta("Giant", "Escape 3", "Urbana")
+]
 
-carro1.mostrar_info()
-moto.mostrar_info()
-bici.mostrar_info()
+for v in vehiculos: v.mostrar_info()
