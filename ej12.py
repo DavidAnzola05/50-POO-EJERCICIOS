@@ -1,41 +1,20 @@
-class libro:
-    def __init__ (self, titulo, autor, ISBN, estado):
-        self.titulo = titulo
-        self.autor = autor
-        self.ISBN = ISBN
-        self.estado = estado
+class Libro:
+    def __init__(self, titulo, autor, estado="disponible"):
+        self.titulo, self.autor, self.estado = titulo, autor, estado
+    def prestar(self): self.estado = "prestado" if self.estado=="disponible" else self.estado
+    def devolver(self): self.estado = "disponible" if self.estado=="prestado" else self.estado
+    def mostrar(self): print(f"{self.titulo} - {self.autor} ({self.estado})")
 
-    def prestar(self):
-        if self.estado == "disponible":
-            self.estado = "prestado"
-            print(f"El libro '{self.titulo}' ha sido prestado.")
-        else:
-            print(f"El libro '{self.titulo}' no está disponible para prestar.")
-    def devolver(self):
-        if self.estado == "prestado":
-            self.estado = "disponible"
-            print(f"El libro '{self.titulo}' ha sido devuelto.")
-        else:
-            print(f"El libro '{self.titulo}' no estaba prestado.")
+libros = [
+    Libro("Cien Años de Soledad", "Gabo"),
+    Libro("1984", "Orwell", "prestado"),
+    Libro("El Principito", "Exupéry")
+]
 
-    def mostrar_libros(self):
-        print(f"Título: {self.titulo}, Autor: {self.autor}, ISBN: {self.ISBN}, Estado: {self.estado}")
+for l in libros: l.mostrar()
 
-libro1 = libro("Cien Años de Soledad", "Gabriel García Márquez", "978-3-16-148410-0", "disponible")
-libro2 = libro("1984", "George Orwell", "978-0-452-28423-4", "prestado")
-libro3 = libro("El Principito", "Antoine de Saint-Exupéry", "978-0-15-601219-5", "disponible")
+op = input("\n1. Prestar (libro 1)\n2. Devolver (libro 2)\nOpción: ")
+if op=="1": libros[0].prestar()
+elif op=="2": libros[1].devolver()
 
-print(libro1.mostrar_libros())
-print(libro2.mostrar_libros())
-print(libro3.mostrar_libros())
-
-accion = print("Que te gustaria hacer?: ")
-print("1. Prestar libro")
-print("2. Devolver libro")
-opcion = input("Ingrese la opcion (1/2): ")
-if opcion == '1':
-    libro1.prestar()
-elif opcion == '2':
-    libro2.devolver()
-    
-
+for l in libros: l.mostrar()
