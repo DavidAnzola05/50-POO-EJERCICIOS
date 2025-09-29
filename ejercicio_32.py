@@ -1,12 +1,11 @@
-class Clase32A:
-    def __init__(self, nombre):
-        self.nombre = nombre
+from datetime import datetime
+class Paciente: 
+    def __init__(s,n): s.n,s.hist=n,[]
+class Doctor: 
+    def __init__(s,n): s.n=n
+class Cita: 
+    def __init__(s,p,d,f): s.p,s.d,s.f=p,d,f; p.hist.append(s)
 
-class Clase32B:
-    def __init__(self, dato):
-        self.dato = dato
-
-if __name__ == "__main__":
-    a = Clase32A("EjemploA")
-    b = Clase32B("EjemploB")
-    print(a.nombre, b.dato)
+p,d=Paciente("Ana"),Doctor("Dr. Luis")
+c=Cita(p,d,datetime(2025,9,30,10,0))
+print(f"{c.p.n} tiene cita con {c.d.n} el {c.f:%Y-%m-%d %H:%M}")
