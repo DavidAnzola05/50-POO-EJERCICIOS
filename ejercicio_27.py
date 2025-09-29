@@ -1,48 +1,16 @@
 class Usuario:
-    def __init__(self, nombre):
-        self.nombre = nombre
-        self.seguidos = []
-        self.publicaciones = []
+    def __init__(self,n): self.n,self.s,self.p=n,[],[]
+    def seguir(self,o): 
+        if o not in self.s:self.s.append(o)
+    def publicar(self,t):
+        pub={"autor":self.n,"texto":t,"likes":0,"comentarios":[]}
+        self.p.append(pub);return pub
 
-    def seguir(self, otro):
-        if otro not in self.seguidos:
-            self.seguidos.append(otro)
-
-    def publicar(self, contenido):
-        p = Publicacion(self, contenido)
-        self.publicaciones.append(p)
-        return p
-
-
-class Publicacion:
-    def __init__(self, autor, contenido):
-        self.autor = autor
-        self.contenido = contenido
-        self.likes = 0
-        self.comentarios = []
-
-    def dar_like(self):
-        self.likes += 1
-
-    def comentar(self, usuario, texto):
-        c = Comentario(usuario, texto)
-        self.comentarios.append(c)
-        return c
-
-
-class Comentario:
-    def __init__(self, autor, texto):
-        self.autor = autor
-        self.texto = texto
-
-
-if __name__ == "__main__":
-    u1 = Usuario("Ana")
-    u2 = Usuario("Luis")
-    u1.seguir(u2)
-    pub = u2.publicar("Hola a todos!")
-    pub.dar_like()
-    pub.comentar(u1, "Bienvenido!")
-    print(pub.contenido, "Likes:", pub.likes)
-    for c in pub.comentarios:
-        print(c.autor.nombre, "comentó:", c.texto)
+# DEMO
+u1,u2=Usuario("Ana"),Usuario("Luis")
+u1.seguir(u2)
+p=u2.publicar("Hola a todos!")
+p["likes"]+=1; p["comentarios"].append((u1.n,"Bienvenido!"))
+print(f"{p['autor']}: {p['texto']} ❤️{p['likes']}")
+for c in p["comentarios"]: print(f"{c[0]}: {c[1]}")
+mbre, "comentó:", c.texto)
