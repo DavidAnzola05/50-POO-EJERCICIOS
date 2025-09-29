@@ -1,12 +1,11 @@
-class Clase33A:
-    def __init__(self, nombre):
-        self.nombre = nombre
+class Cliente: 
+    def __init__(s,n): s.n,s.peds=n,[]
+class Pedido: 
+    def __init__(s,c): s.c,s.est,s.dets=c,"Pendiente",[]; c.peds.append(s)
+class DetallePedido: 
+    def __init__(s,p,it,c): s.it,s.c=it,c; p.dets.append(s)
 
-class Clase33B:
-    def __init__(self, dato):
-        self.dato = dato
-
-if __name__ == "__main__":
-    a = Clase33A("EjemploA")
-    b = Clase33B("EjemploB")
-    print(a.nombre, b.dato)
+c=Cliente("Ana")
+p=Pedido(c)
+DetallePedido(p,"Laptop",1)
+print(f"Cliente {c.n} hizo un pedido de {p.dets[0].c} {p.dets[0].it}, Estado: {p.est}")
