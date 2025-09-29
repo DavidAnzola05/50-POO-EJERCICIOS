@@ -1,24 +1,14 @@
-class retangulo:
+class Rectangulo:
     def __init__(self, base, altura):
-        self.base = base
-        self.altura = altura
+        self.base, self.altura = base, altura
+    def area(self): return self.base * self.altura
+    def perimetro(self): return 2 * (self.base + self.altura)
+    def es_cuadrado(self): return self.base == self.altura
 
-    def area(self):
-        return self.base * self.altura
+b = float(input("Ingrese la base: "))
+h = float(input("Ingrese la altura: "))
+r = Rectangulo(b, h)
 
-    def perimetro(self):
-        return 2 * (self.base + self.altura)
-    
-    def cuadrado(self):
-        return self.base == self.altura
-    
-base = float(input("Ingrese la base del rectangulo: "))
-altura = float(input("Ingrese la altura del rectangulo: "))
-
-print("El resultado de la operacion es:")
-print(f"Area: {retangulo(base, altura).area()}")
-print(f"Perimetro: {retangulo(base, altura).perimetro()}")
-if retangulo(base, altura).cuadrado():
-    print("Es un cuadrado")
-else:
-    print("No es un cuadrado")
+print(f"Área: {r.area()}")
+print(f"Perímetro: {r.perimetro()}")
+print("Es un cuadrado" if r.es_cuadrado() else "No es un cuadrado")
